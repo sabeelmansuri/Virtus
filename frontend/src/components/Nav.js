@@ -6,12 +6,31 @@ class Nav extends Component {
         window.location = "/";
     }
 
+    logout(e) {
+        e.preventDefault();
+        //Logout
+        window.location = "/";
+    }
+
+    isLoggedIn() {
+        return true;
+    }
+
     render () {
+        let loggedin =
+            <div className='nav'>
+                <button className='logo' onClick={this.reload}>VIRTUS</button>
+                <button className='logo' style={{float: 'right'}} onClick={e => this.logout(e)}>SIGN OUT</button>
+            </div>
+
+        let loggedout =
+            <div className='nav'>
+                <button className='logo' onClick={this.reload}>VIRTUS</button>
+            </div>
+
         return (
             <div>
-                <div className='nav'>
-                    <button className='logo' onClick={this.reload}>VIRTUS</button>
-                </div>
+                {this.isLoggedIn() ? loggedin : loggedout}
             </div>
         );
     }
