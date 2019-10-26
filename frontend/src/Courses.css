@@ -12,3 +12,8 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+
+.closeButton {
+    float: right;
+    cursor: pointer;
+}

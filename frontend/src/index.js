@@ -3,6 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { toast } from 'react-toastify';
+
+toast.configure({
+    autoClose: 3000,
+    draggable: false,
+    closeButton: false,
+    draggablePercent: 100,
+    position: 'top-right',
+    style: {top: '40px'}
+});
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
