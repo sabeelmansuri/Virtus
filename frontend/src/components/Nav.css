@@ -1,0 +1,19 @@
+button:focus {
+    outline: none;
+}
+
+.nav {
+    top: 0;
+    width: 100%;
+    background-color: rgba(51,51, 51,1);
+}
+
+.nav .logo {
+    text-align: center;
+    color: #FFF;
+    padding: 12px 14px;
+    font-size: 25px;
+    cursor: pointer;
+    background: none;
+    border: none;
+}

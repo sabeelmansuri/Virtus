@@ -1,5 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Nav from './components/Nav.js';
 import Home from './Home.js';
 import Courses from './Courses.js';
 import LiveCourse from './LiveCourse.js';
@@ -10,6 +11,7 @@ import './App.css';
 function App() {
   return (
       <Router>
+          <Nav />
           <div>
               <Switch>
                   <Route exact path="/" component={Home}/>

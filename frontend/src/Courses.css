@@ -1,0 +1,14 @@
+.coursesParent {
+    margin: 20px;
+}
+
+.coursesTitle {
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.coursesWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}

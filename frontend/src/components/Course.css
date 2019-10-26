@@ -1,0 +1,28 @@
+.courseParent {
+    border: rgba(51,51, 51,1) 1px solid;
+    border-radius: 30px;
+    width: 220px;
+    height: 300px;
+    background: #7d98f2;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.courseLinkWrapper {
+    text-decoration: none;
+    color: black;
+}
+
+.courseInfoWrapper {
+    text-align: center;
+}
+
+.courseCode {
+    font-size: 25px;
+}
+
+.courseName {
+    font-size: 15px;
+}
