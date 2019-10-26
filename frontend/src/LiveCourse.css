@@ -1,0 +1,32 @@
+.liveCourseParent {
+    margin: 20px;
+}
+
+.liveCourseTitle {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.videoWrapper {
+    float: left;
+    width: 65%;
+    margin-left: 10px;
+}
+
+.featureWrapper {
+    float: right;
+    width: 30%;
+    margin-right: 3%;
+}
+
+.askQuestion {
+    margin-top: 10px;
+    border: #7d98f2 1px solid;
+    border-radius: 20px;
+    outline: none;
+    padding: 0px 10px;
+    width: 100%;
+    resize: none;
+    font-family: Raleway;
+    font-size: 15px;
+}

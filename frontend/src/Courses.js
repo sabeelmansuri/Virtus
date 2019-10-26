@@ -38,7 +38,7 @@ class Courses extends Component {
     }
 
     isStudent() {
-        return true;
+        return false;
     }
 
     generateRedirectLink(courseId, color, textColor) {

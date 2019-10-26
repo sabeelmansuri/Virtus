@@ -1,0 +1,25 @@
+.questionWrapper {
+    width: 97%;
+    background: #b7c3ed;
+    padding: 5px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.votes {
+    float: right;
+}
+
+.voteCount {
+    position: relative;
+    ;
+}
+
+.oneUp {
+    position: relative;
+    border-radius: 5px;
+    border: 0;
+    background: #51a13a;
+    color: white;
+    cursor: pointer;
+}
