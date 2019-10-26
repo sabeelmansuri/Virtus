@@ -42,13 +42,7 @@ class Courses extends Component {
     }
 
     generateRedirectLink(courseId, color, textColor) {
-        let base = "/course/" + courseId;
-
-        if (this.isLive(courseId) !== -1) {
-            base +=  "/live";
-        }
-
-        return base + encodeURIComponent("?color=" + color + "&textColor=" + textColor);
+        return "/old_course/" + encodeURIComponent("?color=" + color + "&textColor=" + textColor + "&courseId=courseId");
     }
 
     render() {

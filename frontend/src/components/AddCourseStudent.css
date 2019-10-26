@@ -11,10 +11,11 @@
     border: 0;
     border-bottom: black 1px solid;
     width: 77%;
-    color: #7d98f2;
+    color: black;
     outline: none;
     font-size: 14px;
     margin-left: 5px;
+    background: none;
 }
 
 .enrollButton {

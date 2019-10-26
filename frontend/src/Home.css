@@ -26,14 +26,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(30vh - 53px);
+    height: calc(60vh - 53px);
+    margin-left: 20px;
 }
 
 .break {
 
     height: 0;
-}
-
-.introTitle {
-    font-size: 30px;
 }
