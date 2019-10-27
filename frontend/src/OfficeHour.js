@@ -143,7 +143,7 @@ class OfficeHour extends Component {
     };
 
     getButtonText = (status) => {
-        if (this.props.isStudent) {
+        if (this.state.isStudent) {
             return "+1";
         } else {
             if (status === "new") {
