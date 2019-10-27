@@ -24,22 +24,26 @@ Virtus also removes the temporal bounds of traditional office hours: all broadca
 they've ended, allowing students who cannot make the session to learn at a time convenient for them. This also saves 
 instructors from having to manage hoards of students, many of whom come to learn from other students' questions.
 
-With our innovative and scalable solution, personalized education reaches new heights of productivity and efficiency for students and instructors. 
+Virtus is a scalable solution for personalized education that makes office hours more productive and efficient for students and instructors.
 
 ## How we built it
-We used ReactJS for the frontend and Google Cloud Platform's Firebase for the backend database. For our livestreaming service, we used an open sourced API called Mux with a NodeJS backend to connect to Firebase. 
+We used ReactJS for the frontend, Google Cloud Platform's Firebase for the backend database, and NodeJS to connect the frontend and backend. For our livestreaming service, we used Mux, an open sourced API. 
 
 ## Challenges we ran into
-Our biggest challenge originated from the hackathon's time constraint. In our brainstorming, we had an endless list of features we wanted to add that could be injected straight into a modern school system. The challenge came from having to remove features that would not be completed before the end of the competition while still maintaining the integrity of the core application and its original focus. Prioritizing essential features meant leaving behind impactful additions. 
+Our biggest challenge was balancing ideation and feasability. We had brainstormed an endless list of features for Virtus that would help re-personalize modern education. Given the hackathon's time constraint, however, we were forced to chip away while still maintiaining the integrity and focus of the product. Prioritizing essential features meant understanding the value of Virtus, and deciding how best to provide that. 
 
-We also ran into major issues with our livestreaming service latency with the heavy traffic gym-WiFi. Testing at home or in the library produced fantastic results with the streaming due to stronger WiFi.
-
+The major technical challenge we encountered was livestreaming service latency. Caused by the heavy traffic of the gym-WiFi, high latency made testing and development difficult. Using Virtus at home or in the library, however, produced excellent results.
 
 ## Accomplishments that we're proud of
-We’ve accomplished so much this weekend. Overall, we were able to see our project through from an idea on a whiteboard to polished software. Some of the features we are most proud of include high quality live streaming, real time chat and ticketing systems, and recorded office hours. All in all, we developed a tangible, impactful solution to the problem we wanted to address. We were able to provide a virtual experience that significantly improved the efficiency of office hours as we know them.
+So, so many. We've developed an impactful solution to the problem we wanted to tackle. Seeing Virtus come to life from an idea to a whiteboard to a polished software was indcredible. We're particularly proud of the high qualtiy livestream, realtime chat and ticketing systems, and automatic saved recordings--all of which help make virtual office hours a scalable solution to educational needs.
 
 ## What we learned
-We learned that building something meaningful in 48 hours is more difficult than it looks. To solve this, we improved our efficiency as a team. Other than that, everyone on the team ended up learning something new along with way, whether that be integrating with Firebase or setting up end to end live streaming.
+Personally, we learned how difficult it is to build something meaningful in 36 hours. As the hackathon progressed, we became better at dividing work and communicating, greatly boosting our efficiency.
+
+Technically, everyone on our team ended up learning at least one new technology along the way, whether it be Firebase integration or setting up end-to-end livestreaming.
 
 ## What's next for Virtus
-Virtus has unlimited potential. One feature we plan to add in the future is time stamping for when the TA answers a questions. This would allow students to easily navigate to a specific question being answered by the TA during the office hour recording. Other possible features could include a live chat replay during recorded office hours, and auto clipping recordings that match with a corresponding text transcript.
+One of the hallmarks of Virtus is its potential to expand. For example, we want to add timestamps for when instructors answer a question, allowing students to easily view and navigate to when a question they have was answered. Other planned features include a live chat replay during recorded office hours, and generating transcripts for recordings for easy searchability.
+
+
+After completing these features, we'd love to try a beta with some instructors!
