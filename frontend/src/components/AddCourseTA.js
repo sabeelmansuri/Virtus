@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './AddCourseTA.css';
 import {toast} from "react-toastify";
-import {db, fdb} from "../db";
+import {fdb} from "../db";
 
 class AddCourseTA extends Component {
     state = {

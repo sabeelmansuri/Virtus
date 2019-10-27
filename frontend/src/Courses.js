@@ -23,17 +23,8 @@ class Courses extends Component {
     componentDidMount(){
         db.auth().onAuthStateChanged((user) => {
             this.setState({currentUser: user});
-            fdb.collection("courses")
-                .get()
-                .then(querySnapshot => {
-                    const courses = querySnapshot.docs.map(doc => {
-                        return {id: doc.id, doc: doc.data()}
-                    });
-                    this.setState({courses});
-                });
 
             if (!this.state.currentUser) {
-                console.log("no user");
                 this.setState({isStudent: true});
             } else {
                 fdb.collection("user_accounts").doc(this.state.currentUser.uid).get().then(user_account => {
@@ -45,6 +36,24 @@ class Courses extends Component {
                     }
                 });
             }
+            fdb.collection("courses").where("students", "array-contains", this.state.currentUser.uid)
+                .get()
+                .then(querySnapshot => {
+                    const courses = querySnapshot.docs.map(doc => {
+                        return {id: doc.id, doc: doc.data()}
+                    });
+                    this.setState({courses});
+                    if (!this.state.isStudent) {
+                        fdb.collection("courses").where("ta", "==", fdb.collection("user_accounts").doc(this.state.currentUser.uid))
+                            .get()
+                            .then(querySnapshot => {
+                                const courses = querySnapshot.docs.map(doc => {
+                                    return {id: doc.id, doc: doc.data()}
+                                });
+                                this.setState({courses});
+                            });
+                    }
+                });
         });
     };
 
@@ -61,7 +70,7 @@ class Courses extends Component {
                     {close => (
                         <div>
                             <button className='closeButton' onClick={close}>&times;</button>
-                            <AddCourseStudent />
+                            <AddCourseStudent studentId={this.state.currentUser.uid} />
                         </div>
                     )}
                 </Popup>
