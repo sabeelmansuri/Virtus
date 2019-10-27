@@ -118,6 +118,44 @@ class OfficeHour extends Component {
         });
     };
 
+    getButtonColor = (status) => {
+        if (this.props.isStudent) {
+            return "#51a13a";
+        } else {
+            if (status === "new") {
+                return "#51a13a";
+            } else if (status === "active") {
+                return "#51a13a";
+            } else {
+                return "#000000";
+            }
+        }
+    }
+
+    getBackgroundColor = (status) => {
+        if (status === "new") {
+            return "#b7c3ed";
+        } else if (status === "active") {
+            return "#FFDC53";
+        } else {
+            return "#51a13a";
+        }
+    };
+
+    getButtonText = (status) => {
+        if (this.props.isStudent) {
+            return "+1";
+        } else {
+            if (status === "new") {
+                return "Accept";
+            } else if (status === "active") {
+                return "Complete";
+            } else {
+                return "Done";
+            }
+        }
+    };
+
     renderLiveCourseSession() {
         const listStyle = {
             display: "flex",
@@ -170,7 +208,10 @@ class OfficeHour extends Component {
                                                             status={result.doc.status}
                                                             numUpvotes={result.doc.upvotes}
                                                             isStudent={this.state.isStudent}
-                                                            id={result.id}/>
+                                                            id={result.id}
+                                                            buttonColor={this.getButtonColor(result.doc.status)}
+                                                            buttonText={this.getButtonText(result.doc.status)}
+                                                            backgroundColor={this.getBackgroundColor(result.doc.status)}/>
                                             </div>))}
                                     </ScrollArea>
                                     <textarea rows="4"

@@ -35,9 +35,24 @@ class Question extends Component {
         }
     };
 
+    getButtonColor = (status) => {
+        if (this.props.isStudent) {
+            return "#51a13a";
+        } else {
+            if (status === "new") {
+                return "#51a13a";
+            } else if (status === "active") {
+                return "#51a13a";
+            } else {
+                return "#000000";
+            }
+        }
+    }
+
     componentDidMount = () =>  {
         this.setState({backgroundColor: this.getBackgroundColor(this.props.status)});
         this.setState({buttonText: this.getButtonText(this.props.status)});
+        this.setState({buttonText: this.getButtonColor(this.props.status)});
     };
 
     addOne = (e) => {
@@ -66,11 +81,11 @@ class Question extends Component {
     }
 
     render () {
-        let addOne = <button className="oneUp" onClick={e => this.addOne(e)}>{this.state.buttonText}</button>;
-        let acceptQ = <button className="acceptQ" onClick={e => this.acceptQuestion(e)}>{this.state.buttonText}</button>;
+        let addOne = <button className="oneUp" onClick={e => this.addOne(e)}>{this.props.buttonText}</button>;
+        let acceptQ = <button className="acceptQ" onClick={e => this.acceptQuestion(e)}>{this.props.buttonText}</button>;
 
         return (
-            <div className="questionWrapper" style={{background: this.state.backgroundColor}}>
+            <div className="questionWrapper" style={{background: this.props.backgroundColor}}>
                 <div className="questionTextWrapper">
                     <div className="questionText">{this.state.text}</div>
                 </div>
