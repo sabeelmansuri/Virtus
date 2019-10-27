@@ -36,10 +36,10 @@ We also ran into major issues with our livestreaming service latency with the he
 
 
 ## Accomplishments that we're proud of
-
+We’ve accomplished so much this weekend. Overall, we were able to see our project through from an idea on a whiteboard to polished software. Some of the features we are most proud of include high quality live streaming, real time chat and ticketing systems, and recorded office hours. All in all, we developed a tangible, impactful solution to the problem we wanted to address. We were able to provide a virtual experience that significantly improved the efficiency of office hours as we know them.
 
 ## What we learned
-
+We learned that building something meaningful in 48 hours is more difficult than it looks. To solve this, we improved our efficiency as a team. Other than that, everyone on the team ended up learning something new along with way, whether that be integrating with Firebase or setting up end to end live streaming.
 
 ## What's next for Virtus
-
+Virtus has unlimited potential. One feature we plan to add in the future is time stamping for when the TA answers a questions. This would allow students to easily navigate to a specific question being answered by the TA during the office hour recording. Other possible features could include a live chat replay during recorded office hours, and auto clipping recordings that match with a corresponding text transcript.
