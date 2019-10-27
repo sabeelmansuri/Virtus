@@ -53,7 +53,7 @@ class Chat extends Component {
     return (
       <div className="App">
         <Messages
-          messages={[(("ashukla", "#7d98f2"), "hey"), (("ashukla", "#7d98f2"), "whats up"), (("ashukla", "#7d98f2"), "whats up")]}
+          messages={[(("ashukla", "#7d98f2"), "hey"), (("ashukla", "#7d98f2"), "whats up"), (("ashukla", "#7d98f2"), "whats up"), (("ashukla", "#7d98f2"), "hey"), (("ashukla", "#7d98f2"), "whats up"), (("ashukla", "#7d98f2"), "whats up"), (("ashukla", "#7d98f2"), "hey"), (("ashukla", "#7d98f2"), "whats up"), (("ashukla", "#7d98f2"), "whats up"), (("ashukla", "#7d98f2"), "hey"), (("ashukla", "#7d98f2"), "whats up"), (("ashukla", "#7d98f2"), "whats up"), (("ashukla", "#7d98f2"), "hey"), (("ashukla", "#7d98f2"), "whats up"), (("ashukla", "#7d98f2"), "whats up"), (("ashukla", "#7d98f2"), "hey"), (("ashukla", "#7d98f2"), "whats up"), (("ashukla", "#7d98f2"), "whats up"), (("ashukla", "#7d98f2"), "hey"), (("ashukla", "#7d98f2"), "whats up"), (("ashukla", "#7d98f2"), "whats up")]}
           currentMember={this.state.member}
         />
         <Input

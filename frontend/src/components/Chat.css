@@ -43,13 +43,6 @@
     align-items: flex-end;
   }
   
-  .Messages-message > .avatar {
-    height: 35px;
-    width: 35px;
-    border-radius: 50%;
-    display: inline-block;
-    margin: 0 10px -10px;
-  }
   
   .Message-content > .username {
     display: block;
@@ -66,6 +59,8 @@
     background-color: cornflowerblue;
     color: white;
     display: inline-block;
+    font-size: 12px;
+
   }
   
   .currentMember > .Message-content .text {
