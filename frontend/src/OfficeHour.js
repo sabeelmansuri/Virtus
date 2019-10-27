@@ -130,7 +130,7 @@ class OfficeHour extends Component {
                 return "#000000";
             }
         }
-    }
+    };
 
     getBackgroundColor = (status) => {
         if (status === "new") {
@@ -218,6 +218,7 @@ class OfficeHour extends Component {
                                               name="questionInput"
                                               value={this.state.questionInput}
                                               className="askQuestion"
+                                              style={{width: "100%"}}
                                               onChange={e => this.change(e)}
                                               onKeyUp={e => this.checkSubmit(e)}
                                               placeholder="Want something covered? Ask a question"/>

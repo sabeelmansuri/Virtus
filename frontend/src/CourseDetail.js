@@ -153,7 +153,7 @@ class CourseDetail extends Component {
 
         let recordings = this.state.recordedOfficeHours.map((oh) => {
             return (
-                <li>
+                <li key={oh.id}>
                     <a className={"text-dark"} href={"/courses/" + this.state.courseId + "/oh/" + oh.id}>
                         {this.formatOfficeHourTitle(oh.doc)}
                     </a>

@@ -20,7 +20,7 @@ class Messages extends Component {
     const className = messageFromMe ?
         "Messages-message currentMember" : "Messages-message";
     return (
-        <li className={className}>
+        <li key={message.id} className={className}>
           <div className="Message-content">
             <div className="username">
               {messageFromMe ? "" : message.doc.user}

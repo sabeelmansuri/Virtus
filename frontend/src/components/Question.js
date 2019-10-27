@@ -47,7 +47,7 @@ class Question extends Component {
                 return "#000000";
             }
         }
-    }
+    };
 
     componentDidMount = () =>  {
         this.setState({backgroundColor: this.getBackgroundColor(this.props.status)});
@@ -73,12 +73,12 @@ class Question extends Component {
            fdb.collection("questions").doc(this.props.id).update({
                status: "active"
            });
-       } else if (this.props.status = "active") {
+       } else if (this.props.status === "active") {
            fdb.collection("questions").doc(this.props.id).update({
                status: "done"
            });
        }
-    }
+    };
 
     render () {
         let addOne = <button className="oneUp" onClick={e => this.addOne(e)}>{this.props.buttonText}</button>;

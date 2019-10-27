@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ea7aa465-b980-49a8-9073-55830394f4c1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/OfficeHour.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/OfficeHour.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Chat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/CourseDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/CourseDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/OfficeHour.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/OfficeHour.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Messages.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Messages.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Nav.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Nav.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Question.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Question.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -117,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572164234852</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Fixed some minor formatting issues.">
+      <created>1572165086817</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1572165086817</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,7 +144,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="Added live streaming, some firebase integrations, and session recordings." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added live streaming, some firebase integrations, and session recordings." />
+    <MESSAGE value="Fixed some minor formatting issues." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed some minor formatting issues." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
