@@ -56,7 +56,7 @@ class Courses extends Component {
     }
 
     isStudent() {
-        return false;
+        return true;
     }
 
     generateRedirectLink(courseId, color, textColor) {

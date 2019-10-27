@@ -5,7 +5,8 @@ class Question extends Component {
     state = {
         numUpvotes: 0,
         status: "unanswered",
-        text: this.props.text
+        text: this.props.text,
+        backgroundColor: "#b7c3ed"
     };
 
     addOne = (e) => {
@@ -24,27 +25,30 @@ class Question extends Component {
     acceptQuestion = (e) => {
         e.preventDefault();
 
-        if (e.currentTarget.innerHTML ==="Accept") {
-            e.currentTarget.classList.add("active");
-            e.currentTarget.innerHTML = "Complete";
+        if (e.currentTarget.innerHTML ==="Answer") {
+            e.currentTarget.innerHTML = "Finish";
+            this.setState({backgroundColor: "#FFDC53"});
         } else {
             e.currentTarget.classList.add("complete");
-            e.currentTarget.innerHTML = "Done";
+            this.setState({backgroundColor: "#51a13a"});
+            e.currentTarget.innerHTML = "Done!";
             e.currentTarget.disabled = true;
         }
     }
 
     render () {
         let addOne = <button className="oneUp" onClick={e => this.addOne(e)}>+1</button>;
-        let acceptQ = <button className="acceptQ" onClick={e => this.acceptQuestion(e)}>Accept</button>;
+        let acceptQ = <button className="acceptQ" onClick={e => this.acceptQuestion(e)}>Answer</button>;
 
         return (
-            <div className="questionWrapper {this.state.status}">
-                <div className="votes">
+            <div className="questionWrapper" style={{background: this.state.backgroundColor}}>
+                <div className="questionTextWrapper">
+                    <div className="questionText">{this.state.text}</div>
+                </div>
+                <div className="actionsWrapper">
                     <div>{this.state.numUpvotes}</div>
                     {this.isStudent() ? addOne : acceptQ}
                 </div>
-                <div className="questionText">{this.state.text}</div>
             </div>
         );
     }

@@ -16,6 +16,10 @@
 .closeButton {
     float: right;
     cursor: pointer;
+    background: #a13a3a;
+    color: white;
+    border: 0;
+    border-radius: 10px;
 }
 
 .popup-content {

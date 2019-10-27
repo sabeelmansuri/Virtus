@@ -1,13 +1,9 @@
 .questionWrapper {
     width: 97%;
-    background: #b7c3ed;
     padding: 5px;
     border-radius: 10px;
     margin-bottom: 10px;
-}
-
-.votes {
-    float: right;
+    overflow: auto
 }
 
 .voteCount {
@@ -32,14 +28,23 @@
     cursor: pointer;
 }
 
-.active {
-    background: #FFDC53;
-}
 
 .complete {
-    background: black;
+    background: #353435;
+    cursor: default;
 }
 
 .questionText {
     overflow-wrap: break-word;
+}
+
+.questionTextWrapper {
+    width: 75%;
+    float: left;
+}
+
+.actionsWrapper {
+    width: 20%;
+    float: right;
+    text-align: right;
 }

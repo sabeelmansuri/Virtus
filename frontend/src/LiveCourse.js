@@ -12,7 +12,7 @@ class LiveCourse extends Component {
     state = {
         questionInput: '',
         chatInput: '',
-        questionArray: [<Question text="yo"/>]
+        questionArray: []
     };
 
     getCourseCode() {
