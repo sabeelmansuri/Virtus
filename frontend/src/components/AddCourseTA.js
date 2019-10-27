@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './AddCourseTA.css';
 import {toast} from "react-toastify";
+import {db, fdb} from "../db";
 
 class AddCourseTA extends Component {
     state = {
@@ -13,27 +14,22 @@ class AddCourseTA extends Component {
         this.setState({[e.target.name]: e.target.value});
     }
 
-    createCourse(code, name) {
-        return "100";
-    }
-
     onSubmit(e) {
         e.preventDefault();
         if (this.state.courseCode.length === 0 || this.state.courseName.length === 0) {
             toast.error("Please enter a valid course code and name.");
             return;
         }
-
-        const generatedId = this.createCourse(this.state.courseCode, this.state.courseName);
-        this.setState({courseId: generatedId}, () => {
-            if (this.state.courseId.length === 0) {
-                toast.error("Your class could not be created.");
-            } else {
-                // Success
-
-                toast.success("Your class has been created!");
-                document.getElementById("displayCode").style.display = 'block';
-            }
+        // Success
+        fdb.collection("courses").add({
+            code: this.state.courseCode,
+            name: this.state.courseName,
+            ta: fdb.collection("user_accounts").doc(this.props.taId)
+        }).then(docRef => {
+            let cId = docRef.id;
+            this.setState({courseId: cId});
+            toast.success("Your class has been created!");
+            document.getElementById("displayCode").style.display = 'block';
         });
     }
 

@@ -74,7 +74,7 @@ class Courses extends Component {
                     {close => (
                         <div>
                             <button className='closeButton' onClick={close}>&times;</button>
-                            <AddCourseTA />
+                            <AddCourseTA taId={this.state.currentUser.uid} />
                         </div>
                     )}
                 </Popup>
