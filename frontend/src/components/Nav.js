@@ -27,7 +27,9 @@ class Nav extends Component {
         let loggedin =
             <div className='nav'>
                 <button className='logo' onClick={this.reload}>VIRTUS</button>
-                <button className='logo' style={{float: 'right !important'}} onClick={e => this.logout(e)}>SIGN OUT</button>
+                <button className='ml-auto logo' style={{float: 'right !important'}} onClick={e => this.logout(e)}>SIGN
+                    OUT
+                </button>
             </div>;
 
         let loggedout =

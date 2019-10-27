@@ -5,52 +5,56 @@ import Input from "./Input";
 import {db, fdb} from "../db";
 
 class Chat extends Component {
-  state = {
-    messages: [],
-    currentUser: null
-  };
+    state = {
+        messages: [],
+        currentUser: null
+    };
 
-  onSendMessage = (message) => {
-      console.log(message);
-    fdb.collection("messages")
-        .add({
-          office_hour: this.props.officeHourID,
-          text: message,
-          time_created: new Date(),
-            user: this.state.currentUser.email.replace("@ucsd.edu", "")
-        })
-  };
+    getUsername = (email) => {
+        return email.split("@")[0];
+    };
 
-  componentDidMount() {
-    db.auth().onAuthStateChanged((user) => {
-      this.setState({currentUser: user});
-    });
+    onSendMessage = (message) => {
+        console.log(message);
+        fdb.collection("messages")
+            .add({
+                office_hour: this.props.officeHourID,
+                text: message,
+                time_created: new Date(),
+                user: this.getUsername(this.state.currentUser.email)
+            })
+    };
 
-    fdb.collection("messages")
-        .where("office_hour", "==", this.props.officeHourID)
-        .orderBy("time_created")
-        .onSnapshot(querySnapshot => {
-          const orderedMessages = querySnapshot.docs.map(doc => {
-            return {id: doc.id, doc: doc.data()}
-          });
-          this.setState({messages: orderedMessages});
+    componentDidMount() {
+        db.auth().onAuthStateChanged((user) => {
+            this.setState({currentUser: user});
         });
-  };
+
+        fdb.collection("messages")
+            .where("office_hour", "==", this.props.officeHourID)
+            .orderBy("time_created")
+            .onSnapshot(querySnapshot => {
+                const orderedMessages = querySnapshot.docs.map(doc => {
+                    return {id: doc.id, doc: doc.data()}
+                });
+                this.setState({messages: orderedMessages});
+            });
+    };
 
 
-  render() {
-    return (
-      <div className="App">
-        <Messages
-          messages={this.state.messages}
-          currentMember={this.state.currentUser}
-        />
-        <Input
-          onSendMessage={this.onSendMessage}
-        />
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="App">
+                <Messages
+                    messages={this.state.messages}
+                    currentMember={this.state.currentUser}
+                />
+                <Input
+                    onSendMessage={this.onSendMessage}
+                />
+            </div>
+        );
+    }
 
 }
 

@@ -1,3 +1,7 @@
 .hls-player {
     width: 100%;
 }
+
+video {
+    outline: none;
+}
