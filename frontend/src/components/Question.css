@@ -39,3 +39,7 @@
 .complete {
     background: black;
 }
+
+.questionText {
+    overflow-wrap: break-word;
+}

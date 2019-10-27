@@ -44,7 +44,7 @@ class Question extends Component {
                     <div>{this.state.numUpvotes}</div>
                     {this.isStudent() ? addOne : acceptQ}
                 </div>
-                <div>{this.state.text}</div>
+                <div className="questionText">{this.state.text}</div>
             </div>
         );
     }

@@ -4,10 +4,28 @@ import Popup from 'reactjs-popup';
 import AddCourseStudent from './components/AddCourseStudent.js';
 import AddCourseTA from './components/AddCourseTA.js';
 import './Courses.css';
+import db from "./base";
 
 class Courses extends Component {
     colors = ['#333333', '#FFDC53', "#2D3898", "#A41A3C"];
     textColors = ['white', 'black', "white", "white"];
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            loggedIn: false
+        };
+    }
+
+    componentDidMount(){
+        db.auth().onAuthStateChanged((user) => {
+            if (user) {
+                this.setState({loggedIn: true});
+            } else {
+                this.setState({loggedIn: false});
+            }
+        });
+    };
 
     getCoursesById(userId) {
         return [{

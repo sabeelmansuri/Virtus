@@ -3,16 +3,18 @@ import './Nav.css';
 import db from "../base";
 
 class Nav extends Component {
-    reload() {
-        window.location = "/";
+    reload = () => {
+        if (this.props.isLoggedIn) {
+            window.location = "/courses";
+        } else {
+            window.location = "/";
+        }
     }
 
     logout(e) {
         e.preventDefault();
         db.auth().signOut().then(function() {
-            console.log('Signed Out');
         }, function(error) {
-            console.error('Sign Out Error', error);
         });
         window.location = "/";
     }

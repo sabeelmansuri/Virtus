@@ -4,17 +4,39 @@ import db, {provider} from "./base";
 import { GoogleLoginButton } from "react-social-login-buttons";
 
 class Home extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loggedIn: false
+        };
+    }
+
+    componentDidMount(){
+        db.auth().onAuthStateChanged((user) => {
+            if (user) {
+                this.setState({loggedIn: true});
+            } else {
+                this.setState({loggedIn: false});
+            }
+        });
+    };
+
     handleLoginWithGoogle = () => {
         try{
             db
                 .auth()
                 .signInWithPopup(provider);
         } catch (error){
-            alert(error);
+            console.log(error);
         }
     }
 
     render () {
+        if(this.state.loggedIn) {
+            window.location = "/courses";
+            return;
+        }
+
         return (
             <div>
                 <div className="introWrapper">

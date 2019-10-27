@@ -20,16 +20,12 @@ class App extends Component {
     componentDidMount(){
         db.auth().onAuthStateChanged((user) => {
             if (user) {
-                console.log("onAuthStateChanged true");
                 this.setState({loggedIn: true});
             } else {
-                console.log("onAuthStateChanged false");
                 this.setState({loggedIn: false});
             }
         });
     };
-
-
 
     render() {
         return (
