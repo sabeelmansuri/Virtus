@@ -5,6 +5,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import ScrollArea from '@xico2k/react-scroll-area';
 import Question from './components/Question.js';
+import Chat from './components/Chat.js';
 
 class LiveCourse extends Component {
     values = queryString.parse(this.props.location.search);
@@ -89,8 +90,8 @@ class LiveCourse extends Component {
                                       onKeyUp={e => this.checkSubmit(e)}
                                       placeholder="Want something covered? Ask a question"/>
                         </TabPanel>
-                        <TabPanel>
-                            Chat
+                        <TabPanel className="chatTab" height="400px">
+                            <Chat/>
                         </TabPanel>
                     </Tabs>
                 </div>
