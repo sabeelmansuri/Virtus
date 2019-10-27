@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Nav.css';
+import db from "../base";
 
 class Nav extends Component {
     reload() {
@@ -8,12 +9,16 @@ class Nav extends Component {
 
     logout(e) {
         e.preventDefault();
-        //Logout
+        db.auth().signOut().then(function() {
+            console.log('Signed Out');
+        }, function(error) {
+            console.error('Sign Out Error', error);
+        });
         window.location = "/";
     }
 
     isLoggedIn() {
-        return true;
+        return this.props.isLoggedIn;
     }
 
     render () {
