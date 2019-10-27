@@ -70,7 +70,7 @@ class Courses extends Component {
         let taAdd =
             <div>
                 <Popup trigger={<a><Course color="#FFFFFF" textColor="#7d98f2" courseCode="+" courseName="Add a Course" redirectLink="#"/></a>}
-                       modal contentStyle={{height: '300px', width: '500px'}} closeOnDocumentClick>
+                       modal contentStyle={{height: '375px', width: '500px'}} closeOnDocumentClick>
                     {close => (
                         <div>
                             <button className='closeButton' onClick={close}>&times;</button>

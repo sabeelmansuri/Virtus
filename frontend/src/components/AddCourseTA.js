@@ -20,7 +20,9 @@ class AddCourseTA extends Component {
             toast.error("Please enter a valid course code and name.");
             return;
         }
-        // Success
+
+        toast.success("Creating your course!");
+
         fdb.collection("courses").add({
             code: this.state.courseCode,
             name: this.state.courseName,
