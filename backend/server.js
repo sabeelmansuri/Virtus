@@ -45,7 +45,6 @@ app.post('/mux-hook', function (req, res) {
             .then(snapshot => {
 
                 if (snapshot.empty) {
-                    console.log("doesnt exist");
                     res.status(200).send('Thanks, Mux!');
                     return;
                 }
@@ -54,11 +53,34 @@ app.post('/mux-hook', function (req, res) {
 
                 let officeHourId = officeHour.id;
 
-                let update = {mux_data: req.body.data};
+                let update = {mux_data: {...req.body.data, type: req.body.type}};
 
                 if (req.body.type === "video.live_stream.active") {
                     update.pre_stream = false;
                 }
+
+                fdb.collection("office_hour").doc(officeHourId).update(update).then(() => {
+                    res.status(200).send('Thanks, Mux!');
+                })
+            });
+    } else if (req.body.type === "video.asset.ready") {
+        let assetID = req.body.data.id;
+
+        fdb.collection("office_hour").where("mux_data.active_asset_id", "==", assetID)
+            .get()
+            .then(snapshot => {
+
+                if (snapshot.empty) {
+                    res.status(200).send('Thanks, Mux!');
+                    return;
+                }
+
+                var officeHour = {id: snapshot.docs[0].id, doc: snapshot.docs[0].data()};
+
+                let officeHourId = officeHour.id;
+
+                let update = {mux_assets_data: req.body.data};
+
 
                 fdb.collection("office_hour").doc(officeHourId).update(update).then(() => {
                     res.status(200).send('Thanks, Mux!');

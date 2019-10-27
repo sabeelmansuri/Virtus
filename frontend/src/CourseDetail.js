@@ -5,6 +5,7 @@ import {Col, Container, Row} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import {createLiveStream} from "./streaming";
 import {Redirect} from "react-router-dom";
+import moment from "moment";
 
 class CourseDetail extends Component {
 
@@ -69,7 +70,7 @@ class CourseDetail extends Component {
         fdb.collection("office_hour")
             .where("course", "==", fdb.collection("courses").doc(courseId))
             .where("mux_data.status", "==", "idle")
-            .where("pre_stream", "==", "false")
+            .where("pre_stream", "==", false)
             .orderBy("time_created")
             .onSnapshot(querySnapshot => {
                 const recordedOfficeHours = querySnapshot.docs.map(doc => {
@@ -124,15 +125,44 @@ class CourseDetail extends Component {
                     </Col>
                 </Row>
             );
-
         }
+
+        return (
+            <Row>
+                <Col xs={12}>
+                    <p>There's currently a live session that started
+                        at {moment(this.state.liveOfficeHours[0].doc.time_created.toDate()).format("MMMM Do, h:mm a")}.</p>
+                </Col>
+                <Col xs={12}>
+                    <a href={"/courses/" + this.state.courseId + "/oh/" + this.state.liveOfficeHours[0].id}
+                       className="btn btn-primary" role={"button"}>Join live session</a>
+                </Col>
+            </Row>
+        )
     }
+
+    formatOfficeHourTitle = (officeHour) => {
+        return moment(officeHour.time_created.toDate()).format("MMMM Do, h:mm a");
+    };
 
     renderRecordings() {
         if (this.state.recordedOfficeHours.length === 0) {
             return (<Row>
                 <Col><p>There are no recordings for this course.</p></Col></Row>);
         }
+
+        let recordings = this.state.recordedOfficeHours.map((oh) => {
+            return (
+                <li>
+                    <a className={"text-dark"} href={"/courses/" + this.state.courseId + "/oh/" + oh.id}>
+                        {this.formatOfficeHourTitle(oh.doc)}
+                    </a>
+                </li>);
+        });
+
+        return (<ul>
+            {recordings}
+        </ul>)
     }
 
     render() {

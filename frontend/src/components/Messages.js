@@ -1,5 +1,4 @@
-import {Component} from "react";
-import React from "react";
+import React, {Component} from "react";
 
 class Messages extends Component {
   render() {
@@ -12,14 +11,14 @@ class Messages extends Component {
   }
 
   renderMessage(message) {
-    const messageFromMe = (this.props.currentMember.uid === message.doc.user);
+    const messageFromMe = (this.props.currentMember.email.replace("@ucsd.edu", "") === message.doc.user);
     const className = messageFromMe ?
       "Messages-message currentMember" : "Messages-message";
     return (
       <li className={className}>
         <div className="Message-content">
         <div className="username">
-            {this.props.currentMember.username}
+          {messageFromMe ? "" : message.doc.user}
           </div>
           <div className="text">{message.doc.text}</div>
         </div>

@@ -1,10 +1,8 @@
-
-
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './Chat.css';
 import Messages from "./Messages";
 import Input from "./Input";
-import {fdb, db} from "../db";
+import {db, fdb} from "../db";
 
 class Chat extends Component {
   state = {
@@ -19,7 +17,7 @@ class Chat extends Component {
           office_hour: this.props.officeHourID,
           text: message,
           time_created: new Date(),
-          user: this.state.currentUser.uid
+            user: this.state.currentUser.email.replace("@ucsd.edu", "")
         })
   };
 

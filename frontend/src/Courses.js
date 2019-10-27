@@ -37,16 +37,14 @@ class Courses extends Component {
                 });
             }
             fdb.collection("courses").where("students", "array-contains", this.state.currentUser.uid)
-                .get()
-                .then(querySnapshot => {
+                .onSnapshot(querySnapshot => {
                     const courses = querySnapshot.docs.map(doc => {
                         return {id: doc.id, doc: doc.data()}
                     });
                     this.setState({courses});
                     if (!this.state.isStudent) {
                         fdb.collection("courses").where("ta", "==", fdb.collection("user_accounts").doc(this.state.currentUser.uid))
-                            .get()
-                            .then(querySnapshot => {
+                            .onSnapshot(querySnapshot => {
                                 const courses = querySnapshot.docs.map(doc => {
                                     return {id: doc.id, doc: doc.data()}
                                 });

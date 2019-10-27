@@ -8,7 +8,6 @@ import Error from './Error.js';
 import './App.css';
 import OfficeHour from "./OfficeHour";
 import {db} from './db';
-import LiveCourse from './LiveCourse.js';
 
 class App extends Component {
     constructor(props) {
@@ -34,7 +33,6 @@ class App extends Component {
                 <Nav isLoggedIn={this.state.loggedIn}/>
                 <div>
                     <Switch>
-                        <Route path="/livecourse" component={LiveCourse}/>
                         <Route path="/courses/:courseId/oh/:officeHourId" component={OfficeHour}/>
                         <Route path="/courses/:courseId" component={CourseDetail}/>
                         <Route path="/courses" component={Courses}/>
