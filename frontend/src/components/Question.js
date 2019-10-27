@@ -69,11 +69,11 @@ class Question extends Component {
     acceptQuestion = (e) => {
         e.preventDefault();
 
-       if (this.state.status === "new") {
+       if (this.props.status === "new") {
            fdb.collection("questions").doc(this.props.id).update({
                status: "active"
            });
-       } else if (this.state.status = "active") {
+       } else if (this.props.status = "active") {
            fdb.collection("questions").doc(this.props.id).update({
                status: "done"
            });
