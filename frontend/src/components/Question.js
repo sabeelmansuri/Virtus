@@ -1,44 +1,73 @@
 import React, {Component} from 'react';
 import './Question.css';
+import {fdb} from "../db";
 
 class Question extends Component {
     state = {
-        numUpvotes: 0,
-        status: "unanswered",
+        numUpvotes: this.props.numUpvotes,
+        status: this.props.status,
         text: this.props.text,
-        backgroundColor: "#b7c3ed"
+        backgroundColor: "black",
+        buttonText: "None"
+    };
+
+    getBackgroundColor = (status) => {
+        if (status === "new") {
+            return "#b7c3ed";
+        } else if (status === "active") {
+            return "#FFDC53";
+        } else {
+            return "#51a13a";
+        }
+    };
+
+    getButtonText = (status) => {
+        if (this.props.isStudent) {
+            return "+1";
+        } else {
+            if (status === "new") {
+                return "Accept";
+            } else if (status === "active") {
+                return "Complete";
+            } else {
+                return "Done";
+            }
+        }
+    };
+
+    componentDidMount = () =>  {
+        this.setState({backgroundColor: this.getBackgroundColor(this.props.status)});
+        this.setState({buttonText: this.getButtonText(this.props.status)});
     };
 
     addOne = (e) => {
         e.preventDefault();
-        this.setState({ numUpvotes: this.state.numUpvotes + 1 });
+        fdb.collection("questions").doc(this.props.id).update({
+            upvotes: (this.state.numUpvotes + 1)
+        });
 
         e.currentTarget.disabled = true;
         e.currentTarget.style.background = "#72A172";
         e.currentTarget.innerHTML = "✓";
-    }
-
-    isStudent() {
-        return false;
-    }
+    };
 
     acceptQuestion = (e) => {
         e.preventDefault();
 
-        if (e.currentTarget.innerHTML ==="Answer") {
-            e.currentTarget.innerHTML = "Finish";
-            this.setState({backgroundColor: "#FFDC53"});
-        } else {
-            e.currentTarget.classList.add("complete");
-            this.setState({backgroundColor: "#51a13a"});
-            e.currentTarget.innerHTML = "Done!";
-            e.currentTarget.disabled = true;
-        }
+       if (this.state.status === "new") {
+           fdb.collection("questions").doc(this.props.id).update({
+               status: "active"
+           });
+       } else if (this.state.status = "active") {
+           fdb.collection("questions").doc(this.props.id).update({
+               status: "done"
+           });
+       }
     }
 
     render () {
-        let addOne = <button className="oneUp" onClick={e => this.addOne(e)}>+1</button>;
-        let acceptQ = <button className="acceptQ" onClick={e => this.acceptQuestion(e)}>Answer</button>;
+        let addOne = <button className="oneUp" onClick={e => this.addOne(e)}>{this.state.buttonText}</button>;
+        let acceptQ = <button className="acceptQ" onClick={e => this.acceptQuestion(e)}>{this.state.buttonText}</button>;
 
         return (
             <div className="questionWrapper" style={{background: this.state.backgroundColor}}>
@@ -46,8 +75,8 @@ class Question extends Component {
                     <div className="questionText">{this.state.text}</div>
                 </div>
                 <div className="actionsWrapper">
-                    <div>{this.state.numUpvotes}</div>
-                    {this.isStudent() ? addOne : acceptQ}
+                    <div>{this.props.numUpvotes}</div>
+                    {this.props.isStudent ? addOne : acceptQ}
                 </div>
             </div>
         );

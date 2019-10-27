@@ -30,8 +30,14 @@ class OfficeHour extends Component {
         if (e.keyCode === 13 && e.shiftKey === false) {
             e.preventDefault();
 
-            let newQuestion = <Question text={this.state.questionInput}/>;
-            this.setState(prevState => ({questionArray: [...prevState.questionArray, newQuestion]}));
+            fdb.collection("questions").add({
+                office_hour: this.state.officeHourId,
+                status: "new",
+                text: this.state.questionInput,
+                time_created: new Date(),
+                upvotes: 0
+            });
+
             this.setState({questionInput: ""});
         }
     }
@@ -85,7 +91,18 @@ class OfficeHour extends Component {
 
                 officeHour = officeHour.data();
 
-                this.setState({officeHourId: officeHourId, officeHour})
+                this.setState({officeHourId: officeHourId, officeHour}, () => {
+                    fdb.collection("questions")
+                        .where("office_hour", "==", this.state.officeHourId)
+                        .orderBy("time_created")
+                        .onSnapshot(querySnapshot => {
+                            console.log("called");
+                            const orderedQuestions = querySnapshot.docs.map(doc => {
+                                return {id: doc.id, doc: doc.data()}
+                            });
+                            this.setState({questionArray: orderedQuestions});
+                        });
+                })
             });
     }
 
@@ -149,7 +166,11 @@ class OfficeHour extends Component {
                                     <ScrollArea innerClassName="questionContainer" height="400px">
                                         {this.state.questionArray.map((result, index) => (
                                             <div key={index}>
-                                                {result}
+                                                <Question text={result.doc.text}
+                                                            status={result.doc.status}
+                                                            numUpvotes={result.doc.upvotes}
+                                                            isStudent={this.state.isStudent}
+                                                            id={result.id}/>
                                             </div>))}
                                     </ScrollArea>
                                     <textarea rows="4"
