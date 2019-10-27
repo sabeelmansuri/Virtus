@@ -24,12 +24,15 @@ Virtus also removes the temporal bounds of traditional office hours: all broadca
 they've ended, allowing students who cannot make the session to learn at a time convenient for them. This also saves 
 instructors from having to manage hoards of students, many of whom come to learn from other students' questions.
 
-CLOSE THIS SECTION
+With our innovative and scalable solution, personalized education reaches new heights of productivity and efficiency for students and instructors. 
 
 ## How we built it
-Virtus is built with ReactJS, NodeJS, Google Firebase, and Mux.
+We used ReactJS for the frontend and Google Cloud Platform's Firebase for the backend database. For our livestreaming service, we used an open sourced API called Mux with a NodeJS backend to connect to Firebase. 
 
 ## Challenges we ran into
+Our biggest challenge originated from the hackathon's time constraint. In our brainstorming, we had an endless list of features we wanted to add that could be injected straight into a modern school system. The challenge came from having to remove features that would not be completed before the end of the competition while still maintaining the integrity of the core application and its original focus. Prioritizing essential features meant leaving behind impactful additions. 
+
+We also ran into major issues with our livestreaming service latency with the heavy traffic gym-WiFi. Testing at home or in the library produced fantastic results with the streaming due to stronger WiFi.
 
 
 ## Accomplishments that we're proud of
