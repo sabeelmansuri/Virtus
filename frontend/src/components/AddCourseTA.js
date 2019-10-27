@@ -30,6 +30,7 @@ class AddCourseTA extends Component {
                 toast.error("Your class could not be created.");
             } else {
                 // Success
+
                 toast.success("Your class has been created!");
                 document.getElementById("displayCode").style.display = 'block';
             }

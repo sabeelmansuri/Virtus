@@ -18,7 +18,8 @@ class CourseDetail extends Component {
             liveOfficeHours: [],
             recordedOfficeHours: [],
             redirectURL: null,
-            currentUser: null
+            currentUser: null,
+            isStudent: true
         };
     }
 
@@ -27,6 +28,19 @@ class CourseDetail extends Component {
 
         db.auth().onAuthStateChanged((user) => {
             this.setState({currentUser: user});
+            if (!this.state.currentUser) {
+                console.log("no user");
+                this.setState({isStudent: true});
+            } else {
+                fdb.collection("user_accounts").doc(this.state.currentUser.uid).get().then(user_account => {
+
+                    if (!user_account.exists) {
+                        this.setState({isStudent: true});
+                    } else {
+                        this.setState({isStudent: !user_account.data().is_ta});
+                    }
+                });
+            }
         });
 
         fdb.collection("courses")
@@ -63,7 +77,6 @@ class CourseDetail extends Component {
                 });
                 this.setState({recordedOfficeHours});
             });
-
     }
 
     startLiveSession = () => {
@@ -90,20 +103,10 @@ class CourseDetail extends Component {
             });
     };
 
-    isStudent() {
-        if (!this.state.currentUser)
-            return true;
-        fdb.collection("user_accounts").doc(this.state.currentUser.uid).get().then(user_account => {
-            if (!user_account.exists)
-                return true;
-            return user_account.data().is_ta || true;
-        });
-    }
-
     renderLiveSessions() {
         if (this.state.liveOfficeHours.length === 0) {
 
-            if (this.isStudent()) {
+            if (this.state.isStudent) {
                 return (<Row>
                     <Col>
                         <p>There are currently no live sessions.</p>

@@ -14,65 +14,71 @@ class Courses extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loggedIn: false,
-            courses: []
+            isStudent: true,
+            courses: [],
+            currentUser: null
         };
     }
 
     componentDidMount(){
         db.auth().onAuthStateChanged((user) => {
-            if (user) {
-                this.setState({loggedIn: true});
+            this.setState({currentUser: user});
+            fdb.collection("courses")
+                .get()
+                .then(querySnapshot => {
+                    const courses = querySnapshot.docs.map(doc => {
+                        return {id: doc.id, doc: doc.data()}
+                    });
+                    this.setState({courses});
+                });
+
+            if (!this.state.currentUser) {
+                console.log("no user");
+                this.setState({isStudent: true});
             } else {
-                this.setState({loggedIn: false});
+                fdb.collection("user_accounts").doc(this.state.currentUser.uid).get().then(user_account => {
+
+                    if (!user_account.exists) {
+                        this.setState({isStudent: true});
+                    } else {
+                        this.setState({isStudent: !user_account.data().is_ta});
+                    }
+                });
             }
         });
-
-        fdb.collection("courses")
-            .get()
-            .then(querySnapshot => {
-                const courses = querySnapshot.docs.map(doc => {
-                    return {id: doc.id, doc: doc.data()}
-                });
-                console.log(courses);
-                this.setState({courses});
-            });
     };
 
-    getCoursesById(userId) {
-        return [{
-            courseCode: "CSE 110",
-            courseName: "Software Engineering",
-            courseId: "1"
-        },
-            {
-                courseCode: "BICD 100",
-                courseName: "Genetics",
-                courseId: "2"
-            },
-            {
-                courseCode: "CSE 105",
-                courseName: "Theory of Computation",
-                courseId: "3"
-            },
-            {
-                courseCode: "MATH 20E",
-                courseName: "Vector Calculus",
-                courseId: "4"
-            },]
-    }
-
-    isStudent() {
-        return true;
-    }
 
     generateRedirectLink(courseId) {
         return "/courses/" + encodeURIComponent(courseId);
     }
 
     render() {
-        let studentAdd = <AddCourseStudent />;
-        let taAdd = <AddCourseTA />;
+        let studentAdd =
+            <div>
+                <Popup trigger={<a><Course color="#FFFFFF" textColor="#7d98f2" courseCode="+" courseName="Add a Course" redirectLink="#"/></a>}
+                       modal contentStyle={{height: '300px', width: '500px'}} closeOnDocumentClick>
+                    {close => (
+                        <div>
+                            <button className='closeButton' onClick={close}>&times;</button>
+                            <AddCourseStudent />
+                        </div>
+                    )}
+                </Popup>
+            </div>;
+
+        let taAdd =
+            <div>
+                <Popup trigger={<a><Course color="#FFFFFF" textColor="#7d98f2" courseCode="+" courseName="Add a Course" redirectLink="#"/></a>}
+                       modal contentStyle={{height: '300px', width: '500px'}} closeOnDocumentClick>
+                    {close => (
+                        <div>
+                            <button className='closeButton' onClick={close}>&times;</button>
+                            <AddCourseTA />
+                        </div>
+                    )}
+                </Popup>
+            </div>;
 
         return (
             <div className="coursesParent">
@@ -87,16 +93,7 @@ class Courses extends Component {
                                     redirectLink={this.generateRedirectLink(result.id)}/>
                         </div>
                     ))}
-                    {/*eslint-disable-next-line*/}
-                    <Popup trigger={<a><Course color="#FFFFFF" textColor="#7d98f2" courseCode="+" courseName="Add a Course" redirectLink="#"/></a>}
-                           modal contentStyle={{height: '300px', width: '500px'}} closeOnDocumentClick>
-                        {close => (
-                            <div>
-                                <button className='closeButton' onClick={close}>&times;</button>
-                                {this.isStudent() ? studentAdd : taAdd}
-                            </div>
-                        )}
-                    </Popup>
+                    {this.state.isStudent ? studentAdd : taAdd}
                 </div>
             </div>
         );

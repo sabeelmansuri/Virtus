@@ -19,6 +19,7 @@ body {
 button {
   font-family: inherit;
   font-size: 1em;
+  outline: none !important;
 }
 
 code {
