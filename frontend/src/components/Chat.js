@@ -35,8 +35,7 @@ class Chat extends Component {
           const orderedMessages = querySnapshot.docs.map(doc => {
             return {id: doc.id, doc: doc.data()}
           });
-          let joined = this.state.messages.concat(orderedMessages);
-          this.setState({messages:joined});
+          this.setState({messages: orderedMessages});
         });
   };
 

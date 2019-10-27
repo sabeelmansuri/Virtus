@@ -8,7 +8,6 @@ import Question from './components/Question.js';
 import Chat from './components/Chat.js';
 
 class LiveCourse extends Component {
-    OFFICE_HOUR_ID = "eeP8T9ZwksPcmfvEWgtT";
     values = queryString.parse(this.props.location.search);
 
     state = {
