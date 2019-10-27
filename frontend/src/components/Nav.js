@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './Nav.css';
-import db from "../base";
+import {db} from '../db';
 
 class Nav extends Component {
     reload = () => {
@@ -9,12 +9,12 @@ class Nav extends Component {
         } else {
             window.location = "/";
         }
-    }
+    };
 
     logout(e) {
         e.preventDefault();
-        db.auth().signOut().then(function() {
-        }, function(error) {
+        db.auth().signOut().then(function () {
+        }, function (error) {
         });
         window.location = "/";
     }
@@ -23,17 +23,17 @@ class Nav extends Component {
         return this.props.isLoggedIn;
     }
 
-    render () {
+    render() {
         let loggedin =
             <div className='nav'>
                 <button className='logo' onClick={this.reload}>VIRTUS</button>
                 <button className='logo' style={{float: 'right'}} onClick={e => this.logout(e)}>SIGN OUT</button>
-            </div>
+            </div>;
 
         let loggedout =
             <div className='nav'>
                 <button className='logo' onClick={this.reload}>VIRTUS</button>
-            </div>
+            </div>;
 
         return (
             <div>
@@ -42,4 +42,5 @@ class Nav extends Component {
         );
     }
 }
+
 export default Nav;

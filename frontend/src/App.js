@@ -3,11 +3,11 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Nav from './components/Nav.js';
 import Home from './Home.js';
 import Courses from './Courses.js';
-import LiveCourse from './LiveCourse.js';
-import OfflineCourse from './OfflineCourse.js';
+import CourseDetail from './CourseDetail.js';
 import Error from './Error.js';
 import './App.css';
-import db from "./base";
+import OfficeHour from "./OfficeHour";
+import {db} from './db';
 
 class App extends Component {
     constructor(props) {
@@ -17,7 +17,7 @@ class App extends Component {
         };
     }
 
-    componentDidMount(){
+    componentDidMount() {
         db.auth().onAuthStateChanged((user) => {
             if (user) {
                 this.setState({loggedIn: true});
@@ -33,11 +33,11 @@ class App extends Component {
                 <Nav isLoggedIn={this.state.loggedIn}/>
                 <div>
                     <Switch>
-                        <Route exact path="/" component={Home}/>
+                        <Route path="/courses/:courseId/oh/:officeHourId" component={OfficeHour}/>
+                        <Route path="/courses/:courseId" component={CourseDetail}/>
                         <Route path="/courses" component={Courses}/>
-                        <Route path="/course" component={LiveCourse}/>
-                        <Route path="/old_course" component={OfflineCourse}/>
-                        <Route path="*" component={Error} />
+                        <Route exact path="/" component={Home}/>
+                        <Route path="*" component={Error}/>
                     </Switch>
                 </div>
             </Router>

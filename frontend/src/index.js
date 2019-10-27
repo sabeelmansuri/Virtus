@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import 'bootstrap-social';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { toast } from 'react-toastify';
+import {toast} from 'react-toastify';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 
 toast.configure({
     autoClose: 3000,
@@ -14,6 +14,7 @@ toast.configure({
     position: 'top-right',
     style: {top: '40px'}
 });
+
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

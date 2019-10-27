@@ -4,16 +4,18 @@ import Popup from 'reactjs-popup';
 import AddCourseStudent from './components/AddCourseStudent.js';
 import AddCourseTA from './components/AddCourseTA.js';
 import './Courses.css';
-import db from "./base";
+import {db, fdb} from "./db";
 
 class Courses extends Component {
+
     colors = ['#333333', '#FFDC53', "#2D3898", "#A41A3C"];
     textColors = ['white', 'black', "white", "white"];
 
     constructor(props) {
         super(props);
         this.state = {
-            loggedIn: false
+            loggedIn: false,
+            courses: []
         };
     }
 
@@ -25,6 +27,16 @@ class Courses extends Component {
                 this.setState({loggedIn: false});
             }
         });
+
+        fdb.collection("courses")
+            .get()
+            .then(querySnapshot => {
+                const courses = querySnapshot.docs.map(doc => {
+                    return {id: doc.id, doc: doc.data()}
+                });
+                console.log(courses);
+                this.setState({courses});
+            });
     };
 
     getCoursesById(userId) {
@@ -50,17 +62,12 @@ class Courses extends Component {
             },]
     }
 
-    isLive(courseId) {
-        // Should return -1 if not live
-        return 1;
-    }
-
     isStudent() {
         return true;
     }
 
-    generateRedirectLink(courseId, color, textColor) {
-        return "/old_course/" + encodeURIComponent("?color=" + color + "&textColor=" + textColor + "&courseId=courseId");
+    generateRedirectLink(courseId) {
+        return "/courses/" + encodeURIComponent(courseId);
     }
 
     render() {
@@ -71,13 +78,13 @@ class Courses extends Component {
             <div className="coursesParent">
                 <p className="coursesTitle">YOUR COURSES</p>
                 <div className="coursesWrapper">
-                    {this.getCoursesById().map((result, index) => (
+                    {this.state.courses.map((result, index) => (
                         <div key={index}>
-                            <Course color={this.colors[index]}
-                                    textColor={this.textColors[index]}
-                                    courseCode={result.courseCode}
-                                    courseName={result.courseName}
-                                    redirectLink={this.generateRedirectLink(result.courseId, this.colors[index], this.textColors[index])} />
+                            <Course color={this.colors[index % this.colors.length]}
+                                    textColor={this.textColors[index % this.textColors.length]}
+                                    courseCode={result.doc.code}
+                                    courseName={result.doc.name}
+                                    redirectLink={this.generateRedirectLink(result.id)}/>
                         </div>
                     ))}
                     {/*eslint-disable-next-line*/}
