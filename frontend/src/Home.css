@@ -29,8 +29,3 @@ body {
     height: calc(60vh - 53px);
     margin-left: 20px;
 }
-
-.break {
-
-    height: 0;
-}

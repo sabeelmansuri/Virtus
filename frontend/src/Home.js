@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './Home.css';
 import db, {provider} from "./base";
+import { GoogleLoginButton } from "react-social-login-buttons";
 
 class Home extends Component {
     handleLoginWithGoogle = () => {
@@ -8,7 +9,6 @@ class Home extends Component {
             db
                 .auth()
                 .signInWithPopup(provider);
-            console.log("Signed in");
         } catch (error){
             alert(error);
         }
@@ -27,7 +27,7 @@ class Home extends Component {
                 <div className="loginWrapper">
                     <div className="login">
                         <div className="wrapper">
-                            <button className={"btn btn-social btn-google"} onClick={this.handleLoginWithGoogle}>Log In with Google</button>
+                            <GoogleLoginButton onClick={this.handleLoginWithGoogle} />
                         </div>
                     </div>
                 </div>
