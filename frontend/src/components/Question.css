@@ -12,7 +12,6 @@
 
 .voteCount {
     position: relative;
-    ;
 }
 
 .oneUp {
@@ -22,4 +21,21 @@
     background: #51a13a;
     color: white;
     cursor: pointer;
+}
+
+.acceptQ {
+    position: relative;
+    border-radius: 5px;
+    border: 0;
+    background: #51a13a;
+    color: white;
+    cursor: pointer;
+}
+
+.active {
+    background: #FFDC53;
+}
+
+.complete {
+    background: black;
 }

@@ -28,7 +28,6 @@ class LiveCourse extends Component {
         e.preventDefault();
         if(e.keyCode === 13 && e.shiftKey === false) {
             e.preventDefault();
-            let wrapper = document.getElementsByClassName("questionContainer")[0];
 
             let newQuestion = <Question text={this.state.questionInput}/>;
             this.setState(prevState => ({questionArray: [...prevState.questionArray, newQuestion]}));
@@ -47,7 +46,7 @@ class LiveCourse extends Component {
             flexWrap: "nowrap",
             padding: "0",
             margin: "0",
-            marginBottom: "5px",
+            marginBottom: "10px",
             alignItems: "center"
          };
 
@@ -87,7 +86,8 @@ class LiveCourse extends Component {
                                       value = {this.state.questionInput}
                                       className="askQuestion"
                                       onChange={e => this.change(e)}
-                                      onKeyUp={e => this.checkSubmit(e)}/>
+                                      onKeyUp={e => this.checkSubmit(e)}
+                                      placeholder="Want something covered? Ask a question"/>
                         </TabPanel>
                         <TabPanel>
                             Chat

@@ -11,17 +11,38 @@ class Question extends Component {
     addOne = (e) => {
         e.preventDefault();
         this.setState({ numUpvotes: this.state.numUpvotes + 1 });
-        document.getElementById("oneUp").disabled = true;
-        document.getElementById("oneUp").style.background = "#72A172";
-        document.getElementById("oneUp").innerHTML = "✓";
+
+        e.currentTarget.disabled = true;
+        e.currentTarget.style.background = "#72A172";
+        e.currentTarget.innerHTML = "✓";
+    }
+
+    isStudent() {
+        return false;
+    }
+
+    acceptQuestion = (e) => {
+        e.preventDefault();
+
+        if (e.currentTarget.innerHTML ==="Accept") {
+            e.currentTarget.classList.add("active");
+            e.currentTarget.innerHTML = "Complete";
+        } else {
+            e.currentTarget.classList.add("complete");
+            e.currentTarget.innerHTML = "Done";
+            e.currentTarget.disabled = true;
+        }
     }
 
     render () {
+        let addOne = <button className="oneUp" onClick={e => this.addOne(e)}>+1</button>;
+        let acceptQ = <button className="acceptQ" onClick={e => this.acceptQuestion(e)}>Accept</button>;
+
         return (
             <div className="questionWrapper {this.state.status}">
                 <div className="votes">
                     <div>{this.state.numUpvotes}</div>
-                    <button className="oneUp" onClick={e => this.addOne(e)}>+1</button>
+                    {this.isStudent() ? addOne : acceptQ}
                 </div>
                 <div>{this.state.text}</div>
             </div>
