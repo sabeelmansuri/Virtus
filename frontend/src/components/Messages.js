@@ -3,7 +3,6 @@ import React from "react";
 
 class Messages extends Component {
   render() {
-    console.log(this.props);
     const {messages} = this.props;
     return (
       <ul className="Messages-list">
@@ -13,9 +12,7 @@ class Messages extends Component {
   }
 
   renderMessage(message) {
-    const {member, text} = message;
-    const {currentMember} = this.props;
-    const messageFromMe = false;
+    const messageFromMe = (this.props.currentMember.uid === message.doc.user);
     const className = messageFromMe ?
       "Messages-message currentMember" : "Messages-message";
     return (
@@ -24,7 +21,7 @@ class Messages extends Component {
         <div className="username">
             {this.props.currentMember.username}
           </div>
-          <div className="text">{message}</div>
+          <div className="text">{message.doc.text}</div>
         </div>
       </li>
     );

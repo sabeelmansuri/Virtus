@@ -8,6 +8,7 @@ import Question from './components/Question.js';
 import Chat from './components/Chat.js';
 
 class LiveCourse extends Component {
+    OFFICE_HOUR_ID = "eeP8T9ZwksPcmfvEWgtT";
     values = queryString.parse(this.props.location.search);
 
     state = {
@@ -91,7 +92,7 @@ class LiveCourse extends Component {
                                       placeholder="Want something covered? Ask a question"/>
                         </TabPanel>
                         <TabPanel className="chatTab" height="400px">
-                            <Chat/>
+                            <Chat officeHourID="eeP8T9ZwksPcmfvEWgtT"/>
                         </TabPanel>
                     </Tabs>
                 </div>
